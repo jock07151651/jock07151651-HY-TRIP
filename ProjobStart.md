@@ -225,7 +225,9 @@ home中开发,所在位置
 	3.3盖住tabbar样式,多个页面可能需要,可以封装成一个类,按需添加类即可
 ```
 
-### 10.4city添加搜索城市
+## 11 开发city页面
+
+### 11.1city添加搜索城市
 
 ```shell
 在vantUI中加入search搜索框
@@ -244,7 +246,7 @@ vanui找到对应的tab标签
 想自定义属性,使用对应的api
 ```
 
-### 10.6封装axios
+### 11.2封装axios
 
 ```shell
 在services中创建
@@ -261,4 +263,49 @@ vanui找到对应的tab标签
 4.services/index.js, 引入集合modules所有
 ```
 
-### 10.7 
+### 11.3 找到对象下对象的数据
+
+```shell
+如何切换两个标签展示不同的数据
+city['国内'],city['国外']
+在vantUI标签,通过:name来控制变化的值,是数字,还是对应的key
+xx.val[xx.val],多个值嵌套获取,可以通过computed可计算值来响应式
+```
+
+### 11.4 分组显示开头字母的city
+
+```shell
+1.给分组显示数据,封装到city/cnps/city-group
+	使用vantUI的索引标签
+2.给tab下面,添加一个热门城市
+3.右边的索引其实是一个顺序的展示,是有点问题的,这个索引也是vantui的一个属性控制
+	我们把group组的每一个字母映射成一个数组即可,使用map映射成一个新数组,在新数组
+	再unshift一个# 在前面,来对应热门城市
+```
+
+### 11.5 点击城市,回退到首页显示
+
+```shell
+1.在city的pinia里面设置一个空对象
+2.在索引里点击任意的城市,给赋值到pinia的那个空对象中
+3.在home中的所在位置中渲染出来
+```
+
+## 12.开发home
+
+### 12.1 渲染home中的入住时间
+
+```shell
+1.编写css样式
+npm install dayjs
+使用dayjs方法,格式化时间
+2.在日期添加vantui的日历组件
+3.设置开始时间-结束时间,有多少晚
+4.设置价格,关键字html
+5.在home中访问网络请求该城市热门区域,传给子组件,子组件通过defineProps获取遍历
+6.封装城市热门区域,在service/modules/home访问热门区域api,在service/index导出
+	pinia中的action中直接调用service/index导出的home方法
+	渲染的页面就使用action的方法即可
+	如action使用service/index导出的方法->service/modules/home使用request封装的axios
+```
+

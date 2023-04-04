@@ -23,6 +23,10 @@ const router = createRouter({
       path : '/message',
       component : () => import('@/View/message/message.vue')
     },
+    {
+      path : '/city',
+      component : () => import('@/View/city/city.vue')
+    },
   ]
 })
 

@@ -1,7 +1,24 @@
 :root {
   --primary-color:#ff9854;
+  --van-search-left-icon-color:var(--primary-color) !important;
+  
+  --van-calendar-popup-height : 100% !important;
+  
 }
 
 body {
   font-size: 14px;
+}
+
+.top-page{
+  /*  脱离标准流 */
+  position: relative;
+   /* z轴靠上 */
+  z-index: 9;
+   /* 高度占满整个屏幕 */
+  height: 100vh;
+   /* 背景白色 */
+  background-color: #fff;
+   /* 溢出的高度,自适应 */
+  overflow-y: auto;
 }
