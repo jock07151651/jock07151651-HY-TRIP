@@ -2,9 +2,18 @@
 
   import tabbarData from '@/assets/data/tabbar'
   import {getAssetURL} from '@/utils/load_assets'
-  import { ref } from 'vue';
+  import { watch,ref } from 'vue';
+  import { useRoute } from 'vue-router';
 
+  // 监听路由改变时, 找到对应的索引, 设置currentIndex
+  const route = useRoute()
   const currentIndex = ref(0)
+  watch(route, (newValue) => {
+    // tabbarData的当前的路由,等于新路由,则返回最新路由
+    const index = tabbarData.findIndex(item => item.path === newValue.path)
+    if (index === -1) return 
+    currentIndex.value = index
+  })
 
 </script>
 
@@ -13,7 +22,7 @@
   <div class="tab-bar">
     <!-- v-model双向绑定值,script的currentIndex改变,这里也变 -->
     <!-- active-color：改变active的颜色 -->
-    <van-tabbar v-model="currentIndex" active-color="#ff9854">
+    <van-tabbar v-model="currentIndex" active-color="#ff9854" route>
       <template v-for="(item, index) in tabbarData">
         <van-tabbar-item :to=item.path>
           <template #default>

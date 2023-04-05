@@ -7,3 +7,20 @@ export function getHomeHotSuggests() {
     url: "/home/hotSuggests"
   })
 }
+
+// 获取房屋分类
+export function getHomeCategories() {
+  return hyRequest.get({
+    url: "/home/categories"
+  })
+}
+
+// 获取房屋列表,参数 页码
+export function getHomeHouselist(currentPage) {
+  return hyRequest.get({
+    url: "/home/houselist",
+    params: {
+      page : currentPage
+    }
+  })
+}

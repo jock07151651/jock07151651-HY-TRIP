@@ -220,7 +220,7 @@ home中开发,所在位置
 2.所在位置添加city跳转路由,跳转到city页面
 	创建view/city/city
 3.city页面隐藏tabbar
-	3.1在city路由传递 math对象下的值,调用router.math.xx
+	3.1在city路由传递 math对象下的值,app.vue显示的标签内调用router.math.xx
 	3.2在city中设置css样式,盖住tabbar
 	3.3盖住tabbar样式,多个页面可能需要,可以封装成一个类,按需添加类即可
 ```
@@ -307,5 +307,43 @@ npm install dayjs
 	pinia中的action中直接调用service/index导出的home方法
 	渲染的页面就使用action的方法即可
 	如action使用service/index导出的方法->service/modules/home使用request封装的axios
+```
+
+### 12.2搜索按钮和点击跳转搜索
+
+```shell
+1.给home搜索按钮设置样式,会顶上热门区域,给热门区域一个高度auto
+2.
+3.geisearch设置点击事件,跳转到search页面,可以携带参数 query...
+4.在search路由传递 math对象下的值,调用router.math.xx,隐藏tabbar
+5.获取民宿分类网络请求,由homeStore.actions请求
+6.home/home-categoryes定义组件,给分类设置样式 
+```
+
+### 12.3 home下的列表展示
+
+```shell
+1.新建home-content页面,下访问网络房屋列表api
+2.在actions方法中,给定义的空数组,push ...res.data解构数组进去
+3.渲染到home-content页面,添加下拉加载事件,重复调用网络房屋列表api
+4.递增可以在store定义一个页码,每调用一次,页码++
+```
+
+### 12.4 house-item,房间列表封装到components中
+
+```shell
+1.新建house-item-v3/house-item-v3页面,通过defineProps
+2.新建house-item-v9/house-item-v9页面,通过defineProps
+3.在里面渲染数据,编写html结构
+```
+
+### 12.5 home中的列表监听滚动
+
+```shell
+有window和元素内部的 滚动
+将业务代码,抽取到hooks中
+在hooke定义一个变量,提示如果到达底部,返回true
+给多调用的方法添加防抖 npm install underscore
+使用watch监听
 ```
 
