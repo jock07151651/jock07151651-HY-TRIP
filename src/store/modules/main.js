@@ -11,7 +11,9 @@ const useMainStore = defineStore("main",{
   state: () => ({
     token : "",
     startDate : startDate,
-    endDate : endDate
+    endDate : endDate,
+    // 控制网络请求的loading加载图片
+    isLoading : false,
   }),
   
 })

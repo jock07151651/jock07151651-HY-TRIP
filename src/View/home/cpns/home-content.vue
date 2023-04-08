@@ -3,9 +3,16 @@
     import houseItemV9 from '@/components/house-item-v9/house-item-v9.vue';
     import { storeToRefs } from 'pinia';
     import useHomeStore from '@/store/modules/home';
+    import { useRouter } from 'vue-router';
 
     const homeStore = useHomeStore()
     const {houseList} = storeToRefs(homeStore)
+
+    // 获取house详情对应的id
+    const router = useRouter()
+    const itemClick = (houseId) => {
+      router.push('/detail/' + houseId,)
+    }
 
 </script>
 
@@ -17,8 +24,10 @@
       <template v-for="(item,index) in houseList" :key="item.data.houseId">
         <house-item-v3 v-if="item.discoveryContentType === 3"
                       :houseItem="item.data"
+                      @click="itemClick(item.data.houseId)"
         />
         <house-item-v9 v-else-if="item.discoveryContentType === 9"         :houseItem="item.data"
+                   @click="itemClick(item.data.houseId)"
         />
       </template>
     </div>

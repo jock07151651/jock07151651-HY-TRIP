@@ -45,6 +45,7 @@ import { computed } from '@vue/reactivity';
     <home-nav-bar/>
     <home-search-box/>
     <home-categories/>
+    <!-- 到规定的px,显示搜索框 -->
     <div class="search-bar" v-if="isShowSearchBar">
       <search-bar :start-date="'09.19'" :end-date="'09.20'"/>
     </div>

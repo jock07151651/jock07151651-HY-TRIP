@@ -1,18 +1,26 @@
 <script setup>
-
+  const props = defineProps({
+    startDate : {
+      type : String,
+      default : '04.01'
+    },
+    endDate : {
+      type : String,
+      default : '04.05'
+    }
+  })
 </script>
-
 
 <template>
   <div class="search">
     <div class="select-time">
       <div class="item start">
         <div class="name">住</div>
-        <div class="date">04.5</div>
+        <div class="date">{{startDate}}</div>
       </div>
       <div class="item end">
         <div class="name">离</div>
-        <div class="date">04.6</div>
+        <div class="date">{{endDate}}</div>
       </div>
     </div>
     <div class="content">
@@ -30,6 +38,7 @@
   display: flex;
   // 默认是row
   // flex-direction: row;
+  // search的里面元素上下对齐
   align-items: center;
   height: 45px;
   line-height:45px;
@@ -40,7 +49,7 @@
   background: #f2f4f6;
   .select-time {
     display: flex;
-    // 从上到下
+    // 从上到下,以列排序
     flex-direction: column;
     .item {
       display: flex;

@@ -347,3 +347,80 @@ npm install dayjs
 使用watch监听
 ```
 
+### 12.6 components/search-bar
+
+```shell
+设置滚到一定px,显示在顶部
+通过获取scrollTop,计算属性(()=>{})
+```
+
+## 13.设置网络请求显示加载画面
+
+### 13.1是全局的,放在appvue
+
+```shell
+1.全局,就封装在components里面
+2.在app.vue渲染
+3.弄成一个全屏的元素,在进行网络请求时才出现
+4.将loading的控制变量,定义在mianStore
+5.怎么做,才能控制全局的请求让loading,出现或者消失
+6.直接在request封装上设置loading的值,但这样会显得request很怪异
+7.要让请求的方法,只做请求.所以可以在实例前,设置请求响应拦截
+8.在请求前loading为true,在响应前设置为false.就能控制全局的request,response
+
+```
+
+## 13.2搭建详情页
+
+```shell
+1.新建视图,detail/detail
+2.路由携带id,/xx/:id
+3.item绑定点击事件,传递houseId到detail
+4.template显示$route.params.id
+5.script显示:import useRouter, 定义的变量.params.id
+6.在详情页顶部编写vantUI导航栏,回退上一步
+```
+
+### 13.3详情页获取id请求
+
+```shell
+1.添加services/detail
+2.在detail.vue保存请求数据,先不通过detailStore
+3.如果该请求返回的data太多,使用computed计算属性,返回需要的data
+4.编写轮播图组件,在详情页传递数据渲染
+5.自定义插槽,改变指示器.对元素做定位.摆到右下角位置
+6.将不同类别的图片,分别存放到定义对象里的数组中去,遍历出来,做成轮播图不同的类别
+7.处理不同类别如,卧室,卫生间,其他.如何轮播到选中.以及图片顺序的播放
+```
+
+### 13.4渲染detail内容
+
+```shell
+1.有一些html结构相同,可以定义插槽,新建在components/detail-section
+2.新建detail/cpns/detail_xxx.vue
+3.定义一个放插槽的页面,第二个页面引入插槽的内容,第三放入到detail.vue
+```
+
+### 13.5引入百度地图
+
+```shell
+在index.html入口文件
+1.填入script地图的地址
+2.创建一个存放地图的div
+3.new一个map类,传入doc,
+4.new一个经纬度类,传入经纬度数据
+5.new一个marker类,加一个大头针定位
+```
+
+### 13.6 新建顶部固定tab
+
+```shell
+在components/tab-control
+这个detail是在元素里面滚动的,不同于之前的在window滚动
+所以需要区分window和元素.
+监听top的px,>300 现形
+在detail.vue渲染
+```
+
+
+

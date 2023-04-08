@@ -61,13 +61,13 @@ export default function useScroll() {
     }
   },300)
 
-  //v2 当html挂载时
+  //v2 当html挂载时,自动执行
   onMounted(() => {
     window.addEventListener("scroll",scrollListenerHandler)
   })
-  //v2 当html销毁时
+  //v2 当html销毁时,自动执行
   onUnmounted(() => {
-    window.addEventListener("scroll",scrollListenerHandler)
+    window.removeEventListener("scroll",scrollListenerHandler)
   })
   return {isReachBottom, clientHeight, scrollTop, scrollHeight}
 }
