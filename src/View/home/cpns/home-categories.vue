@@ -1,9 +1,9 @@
 <script setup>
   import useHomeStore from '@/store/modules/home';
-import { storeToRefs } from 'pinia';
+  import { storeToRefs } from 'pinia';
   const homeStore = useHomeStore()
   const {categories} = storeToRefs(homeStore)
-  // console.log(categories)
+
 </script>
 
 
