@@ -1,5 +1,5 @@
 <script setup>
-  import { watch } from 'vue';
+  import { watch,ref } from 'vue';
   import HomeNavBar from './cpns/home-nav-bar.vue'
   import homeSearchBox from './cpns/home-search-box.vue';
   import homeCategories from './cpns/home-categories.vue';
@@ -7,7 +7,7 @@
   import searchBar from '@/components/search-bar/search-bar.vue'
   import useHomeStore from '@/store/modules/home';
   import useScroll from '@/hooks/useScroll'
-import { computed } from '@vue/reactivity';
+  import { computed } from '@vue/reactivity';
 
 
   const homeStore = useHomeStore()
@@ -18,9 +18,9 @@ import { computed } from '@vue/reactivity';
   // 调用actions 渲染house的房间列表
   homeStore.getHomeHouselistAction()
 
-  
+  const homeRef = ref()
   // v3封装到hooks中
-  const {isReachBottom, scrollTop} = useScroll()
+  const {isReachBottom, scrollTop} = useScroll(homeRef)
   // 监听是否到底了
   watch(isReachBottom, (newValue) => {
     if (newValue) {
@@ -38,10 +38,13 @@ import { computed } from '@vue/reactivity';
   })
 
 </script>
-
+<script>
+  // 定义长链接需要用的name标识
+  export default { name: "home" }
+</script>
 
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef">
     <home-nav-bar/>
     <home-search-box/>
     <home-categories/>
@@ -55,9 +58,10 @@ import { computed } from '@vue/reactivity';
 </template>
 
 <style lang="less" scoped>
-  .height{
-    height: 40px;
-  }
+.home {
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
   .search-bar {
     position: fixed;
     z-index: 9;
@@ -68,4 +72,9 @@ import { computed } from '@vue/reactivity';
     padding: 16px 16px 10px;
     background-color:#fff;
   }
+  .height{
+    height: 40px;
+  }
+}
+  
 </style>

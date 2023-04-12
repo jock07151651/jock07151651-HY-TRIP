@@ -23,8 +23,12 @@ const props = defineProps({
       </slot>
     </div>
     <div class="footer">
-      <span class="more">{{ moreText }}</span>
-      <van-icon name="arrow" color="#ff9645" />
+      <span class="more">
+        {{ moreText }}
+        <van-icon v-if="moreText"
+         name="arrow" color="#ff9645" />
+      </span>
+      
     </div>
     
   </div>

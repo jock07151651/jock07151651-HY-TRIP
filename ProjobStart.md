@@ -422,5 +422,55 @@ npm install dayjs
 在detail.vue渲染
 ```
 
+### 13.7 详情底部ui与滚动到的位置常亮
+
+```shell
+1.底部编写,聊天,价格,立即预定按钮
+
+2.通过ref获取每个tab的name,从而获得每一个scrollTop的位置
+3.watch,scrollTop的变化来判断索引的走向
+4.将对应的索引,返回给ref的tab的el对象,给tab的索引改变
+5.在实现点击跳转后,从1的位置,点到4,中间2,3会跟着亮过去
+	在点击方法中设置一个变量,是点击时就跳过滚动监听
+	是滑动,就把点击变量设置为false
+```
+
+## 14 代码优化
+
+### 14.1 从detail返回首页报错
+
+```shell
+detail中获取div元素,返回的时候,detail页面注销,这时候还获取元素
+是获取不到的.是null.所以在获取元素哪里加个判断.返回即可
+```
+
+### 14.2 keepalive长链接
+
+```shell
+1.给home设置保持链接
+2.保持长链接出现的bug,在进行页面切换时,因为home监听的是window页面,切换另一个页面时,到底部了.有个方法是到底部执行分页.因为是监听的window是全局的.所以会执行一次.
+3.给home设置height 100vh,ov-flowy:auto,如果有设置padding,margin的,需要加一个box-sizeing-border-box,设置为一个div元素的到底执行方法便可
+```
+
+### 14.3 页面禁止缩放
+
+```shell
+1.在index页面,math设置属性
+2.在适配不同设备,内容适应屏幕
+3.在vite/webpack ->下有postcss工具 => 下也可以安装插件plugins->postcss-px-to-viewport
+4.在vantUI的进阶用法,设置px转vw的操作
+5.新建postcss.config.js,把配置配好
+```
+
+### 14.4给项目打包
+
+```shell
+1.npm run build
+放入到云服务器
+
+2.tabbar的bug
+ 使用if,在前进后退,tabbar的高亮位置不对.是因为if把div销毁了.索引找不到,只能从0开始,可以使用v-show
+```
+
 
 
